@@ -1,4 +1,6 @@
 ﻿using System;
+using Core;
+
 
 namespace CoreConsole
 {
@@ -6,7 +8,8 @@ namespace CoreConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var element = new ContractElement();            
+            Console.WriteLine(element.GetContacts());
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿namespace API
+﻿namespace API.Models
 {
     public class Contact
     {
-        public string Name { get; set; }
+        public string First { get; set; }
     }
 }

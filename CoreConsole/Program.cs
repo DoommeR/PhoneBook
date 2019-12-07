@@ -8,8 +8,9 @@ namespace CoreConsole
     {
         static void Main(string[] args)
         {
-            var element = new ContractElement();            
-            Console.WriteLine(element.GetContacts());
+            var element = new ContractElement();
+           var res = element.GetContacts().Result;
+            Console.WriteLine(res);
         }
     }
 }

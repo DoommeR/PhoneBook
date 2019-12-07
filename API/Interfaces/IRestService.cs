@@ -8,7 +8,7 @@ namespace API.Interfaces
 {
     public interface IRestService
     {
-        Task<List<Contact>> RefreshDataAsync();
+        Task<Result> RefreshDataAsync();
 
     }
 }

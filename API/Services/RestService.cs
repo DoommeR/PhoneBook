@@ -14,8 +14,8 @@ namespace API.Services
     public class RestService : IRestService
     {
         HttpClient _client;
-        private static string url = "https://randomuser.me/api";
-        public List<Contact> Items { get; private set; }
+        private static string url = "https://randomuser.me/api/?inc=name,phone&noinfo&results=10";
+        public Result Items { get; private set; }
 
         public RestService()
         {
@@ -23,16 +23,17 @@ namespace API.Services
         }
 
 
-        public async Task<List<Contact>> RefreshDataAsync()
+        public async Task<Result> RefreshDataAsync()
         {
-            Items = new List<Contact>();
+            Items = new Result();
             var uri = new Uri(string.Format(url, string.Empty));
             try {
                 var response = await _client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    Items = JsonConvert.DeserializeObject<List<Contact>>(content);
+                    Items = JsonConvert.DeserializeObject<Result>(content);
+                    //Items.Results.ForEach(el => Console.WriteLine(el.Phone));
                 }
             }
             catch (Exception ex)

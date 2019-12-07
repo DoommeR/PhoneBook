@@ -1,4 +1,4 @@
-﻿using API.Interfaces;
+﻿                             using API.Interfaces;
 using API.Models;
 using API.Services;
 using System;
@@ -17,8 +17,8 @@ namespace API.Controllers
             srv = service;
         }
         */
-        public Task<List<Contact>> RefreshDataAsync() {
-            return srv.RefreshDataAsync();
+        public  Task<Result> GetContacts() {
+            return  srv.RefreshDataAsync();
         }
     }
 }

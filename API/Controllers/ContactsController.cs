@@ -10,13 +10,14 @@ namespace API.Controllers
 {
     public class ContactsController 
     {
-        IRestService srv = new RestService();
-        /*
+        //IRestService srv = new RestService();
+        private  IRestService srv;
+
         public ContactsController(IRestService service) 
         {
             srv = service;
         }
-        */
+        
         public  Task<Result> GetContacts() {
             return  srv.RefreshDataAsync();
         }

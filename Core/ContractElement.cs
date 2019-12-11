@@ -11,13 +11,11 @@ namespace Core
     public class ContractElement 
     {
         //IRestService restService;
-        ContactsController cntr = new ContactsController();
+        private readonly ContactsController controller= ServiceManager.Resolve<ContactsController>();
 
-        public async Task<Result> GetContacts() {
-            return await cntr.GetContacts();
-        }
-        public async Task<List<Contact>> getContactsList() {
-           Result list = await GetContacts();
+        public async Task<List<Contact>> getContactsList()
+        {
+           Result list = await controller.GetContacts();
             return list.Results;
         }
     }

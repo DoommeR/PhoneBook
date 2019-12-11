@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
+using API.Interfaces;
+using API.Services;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
@@ -24,6 +26,12 @@ namespace PhoneBookHW
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+
+            Core.Init.CoreInit();
+            var elem = new ContractElement();
+
+            var res = await elem.getContactsList();
+            Console.WriteLine(res.Count);
             /*
             var element = new ContractElement();
             var list = await element.getContactsList();

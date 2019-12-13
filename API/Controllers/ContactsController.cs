@@ -18,8 +18,8 @@ namespace API.Controllers
             srv = service;
         }
         
-        public  Task<Result> GetContacts() {
-            return  srv.RefreshDataAsync();
+        public  async Task<Result> GetContacts() {
+            return await srv.RefreshDataAsync();
         }
     }
 }

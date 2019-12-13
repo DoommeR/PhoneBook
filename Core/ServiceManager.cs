@@ -22,9 +22,8 @@ namespace Core
         public void Register<T>(T val) {
             if (!dict.ContainsKey(val.GetType())) {
                 dict.Add(val.GetType(), val);
-
                 dict.TryGetValue(val.GetType(), out object res);
-                Console.WriteLine(res.ToString());
+
             }
         }
 
@@ -34,11 +33,9 @@ namespace Core
             try
             {
                 dict.TryGetValue(typeof(T), out res);
-
             }
             catch (KeyNotFoundException)
             {
-                
                 return default;
             }
             return (T)res;

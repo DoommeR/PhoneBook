@@ -13,7 +13,7 @@ namespace Core
         public static void CoreInit() {
             ServiceManager serviceManager = ServiceManager.getInstance();
             serviceManager.Register(new RestService());
-            serviceManager.Register(new ContactsController(ServiceManager.Resolve<IRestService>()));
+            serviceManager.Register(new ContactsController(ServiceManager.Resolve<RestService>()));
         }
         
     }

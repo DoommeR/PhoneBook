@@ -11,6 +11,7 @@ using System;
 using Core;
 using API.Models;
 using System.Collections.Generic;
+using Android.Util;
 
 namespace PhoneBookHW
 {
@@ -31,7 +32,7 @@ namespace PhoneBookHW
             var elem = new ContractElement();
 
             var res = await elem.getContactsList();
-            Console.WriteLine(res.Count);
+
             /*
             var element = new ContractElement();
             var list = await element.getContactsList();

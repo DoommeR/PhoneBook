@@ -8,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public class ContractElement 
+    public class ContractElement
     {
-        //IRestService restService;
         private readonly ContactsController controller= ServiceManager.Resolve<ContactsController>();
-
         public async Task<List<Contact>> getContactsList()
         {
-           Result list = await controller.GetContacts();
+            Result list = await controller.GetContacts();
             return list.Results;
         }
     }

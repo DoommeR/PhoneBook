@@ -32,6 +32,8 @@ namespace PhoneBookHW
             var elem = new ContractElement();
 
             var res = await elem.getContactsList();
+            var contactAdapter = new ContactAdapter(res);
+
 
             /*
             var element = new ContractElement();
@@ -43,7 +45,9 @@ namespace PhoneBookHW
             var ListAdapter = new ArrayAdapter<string>(this, Resource.Layout.content_main,Resource.Id.lvMain, lel);
             lw.SetAdapter(ListAdapter);
             */
-
+            ListView lw = FindViewById<ListView>(Resource.Id.lvMain);
+            lw.Adapter = contactAdapter;
+            
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

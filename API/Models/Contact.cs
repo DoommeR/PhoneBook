@@ -19,4 +19,17 @@ namespace API.Models
         [JsonProperty("last")]
         public string Last { get; set; }
     }
+
+    public class Picture {
+
+        [JsonProperty("large")]
+        public string large { get; set;}
+
+        [JsonProperty("medim")]
+        public string medim { get; set; }
+
+        [JsonProperty("thumbnail")]
+        public string thumbnail { get; set; }
+
+    }
 }

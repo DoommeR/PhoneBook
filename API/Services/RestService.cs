@@ -14,7 +14,6 @@ namespace API.Services
 
     public class RestService : IRestService
     {
-        private bool _isOnline = true;
         HttpClient _client;
         private static string url = "https://randomuser.me/api/?inc=name,phone,picture&noinfo&results=10";
         public Result Items { get; private set; }
@@ -24,28 +23,22 @@ namespace API.Services
             _client = new HttpClient();
         }
 
-
         public async Task<Result> RefreshDataAsync()
         {
             Items = new Result();
             var uri = new Uri(string.Format(url, string.Empty));
             try {
-
-                if (_isOnline) {
                     var response = await _client.GetAsync(uri);
                     
                     if (response.IsSuccessStatusCode)
                     {
+                        /*
+                        string content = "{ \"results\":[{\"name\":{\"title\":\"Mrs\",\"first\":\"Ömür\",\"last\":\"Fahri\"},\"phone\":\"(283)-286-7321\"},{\"name\":{\"title\":\"Ms\",\"first\":\"Laura\",\"last\":\"Andersen\"},\"phone\":\"50035009\"}]}";
+                        Items = JsonConvert.DeserializeObject<Result>(content);*/
+
                         var content = await response.Content.ReadAsStringAsync();
                         Items = JsonConvert.DeserializeObject<Result>(content);
                     }
-                }
-                else {
-
-                    string content = "{ \"results\":[{\"name\":{\"title\":\"Mrs\",\"first\":\"Ömür\",\"last\":\"Fahri\"},\"phone\":\"(283)-286-7321\"},{\"name\":{\"title\":\"Ms\",\"first\":\"Laura\",\"last\":\"Andersen\"},\"phone\":\"50035009\"}]}";
-                    Items = JsonConvert.DeserializeObject<Result>(content);
-                }
-                
             }
             catch (Exception ex)
             {

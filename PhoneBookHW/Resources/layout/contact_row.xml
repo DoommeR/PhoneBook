@@ -17,12 +17,12 @@
         android:layout_height="match_parent"
         android:layout_weight="0.25"
         android:gravity="center"
-        android:textSize="24sp" />
+        android:textSize="10sp" />
     <TextView
         android:id="@+id/contact_row_name"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.25"
         android:gravity="center"
-        android:textSize="24sp" />
+        android:textSize="10sp" />
 </LinearLayout>

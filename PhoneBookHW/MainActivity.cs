@@ -34,17 +34,6 @@ namespace PhoneBookHW
             var res = await elem.getContactsList();
             var contactAdapter = new ContactAdapter(res);
 
-
-            /*
-            var element = new ContractElement();
-            var list = await element.getContactsList();
-
-            string[] lel = { "kek", "shmek" };
-    
-            ListView lw = FindViewById<ListView>(Resource.Id.lvMain);
-            var ListAdapter = new ArrayAdapter<string>(this, Resource.Layout.content_main,Resource.Id.lvMain, lel);
-            lw.SetAdapter(ListAdapter);
-            */
             ListView lw = FindViewById<ListView>(Resource.Id.lvMain);
             lw.Adapter = contactAdapter;
             

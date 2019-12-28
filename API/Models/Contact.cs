@@ -10,6 +10,8 @@ namespace API.Models
 
         [JsonProperty("name")]
         public Name name;
+        [JsonProperty("picture")]
+        public Picture picture;
     }
 
     public class Name

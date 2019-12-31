@@ -12,13 +12,15 @@ using Core;
 using API.Models;
 using System.Collections.Generic;
 using Android.Util;
+using Android.Content;
+using Newtonsoft.Json;
 
 namespace PhoneBookHW
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        
+        List<Contact> res;   
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -31,12 +33,22 @@ namespace PhoneBookHW
             Core.Init.CoreInit();
             var elem = new ContractElement();
 
-            var res = await elem.getContactsList();
+             res = await elem.getContactsList();
             var contactAdapter = new ContactAdapter(res);
 
             ListView lw = FindViewById<ListView>(Resource.Id.lvMain);
             lw.Adapter = contactAdapter;
+            lw.ItemClick += Lw_ItemClick;
             
+        }
+
+        private void Lw_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+
+            //Toast.MakeText(Application.Context, res[e.Position].name.First, ToastLength.Short).Show();
+            Intent intent = new Intent(this, typeof(DetailActivity));
+            intent.PutExtra("Contact", JsonConvert.SerializeObject(res[e.Position]));
+            StartActivity(intent);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)

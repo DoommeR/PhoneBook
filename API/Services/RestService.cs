@@ -15,7 +15,7 @@ namespace API.Services
     public class RestService : IRestService
     {
         HttpClient _client;
-        private static string url = "https://randomuser.me/api/?inc=name,phone,picture&noinfo&results=10";
+        private static string url = "https://randomuser.me/api/?inc=name,phone,picture&noinfo&results=20";
         public Result Items { get; private set; }
 
         public RestService()

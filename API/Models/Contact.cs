@@ -27,8 +27,8 @@ namespace API.Models
         [JsonProperty("large")]
         public string large { get; set;}
 
-        [JsonProperty("medim")]
-        public string medim { get; set; }
+        [JsonProperty("medium")]
+        public string medium { get; set; }
 
         [JsonProperty("thumbnail")]
         public string thumbnail { get; set; }

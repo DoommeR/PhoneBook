@@ -34,7 +34,7 @@ namespace PhoneBookHW
 
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.contact_row, parent, false);
             
-            view.FindViewById<ImageView>(Resource.Id.contact_row__icon).SetImageBitmap(GetImageBitmapFromUrl(this[position].picture.thumbnail));
+            view.FindViewById<ImageView>(Resource.Id.contact_row__icon).SetImageBitmap(Utils.GetImageBitmapFromUrl(this[position].picture.thumbnail));
             view.FindViewById<TextView> (Resource.Id.contact_row_phone).Text =this[position].Phone;
             view.FindViewById<TextView>(Resource.Id.contact_row_name).Text = this[position].name.First;
 
@@ -54,20 +54,6 @@ namespace PhoneBookHW
             }
         }
 
-        private Bitmap GetImageBitmapFromUrl(string url)
-        {
-            Bitmap imageBitmap = null;
-
-            using (var webClient = new WebClient())
-            {
-                var imageBytes = webClient.DownloadData(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            return imageBitmap;
-        }
+        
     }
 }

@@ -4,6 +4,7 @@ using API.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Net;
 
 namespace Core
 {
@@ -14,6 +15,7 @@ namespace Core
             ServiceManager serviceManager = ServiceManager.getInstance();
             serviceManager.Register(new RestService());
             serviceManager.Register(new ContactsController(ServiceManager.Resolve<RestService>()));
+            serviceManager.Register(new WebClient());
         }
         
     }

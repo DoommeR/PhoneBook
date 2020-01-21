@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-
+using System.Threading;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -11,16 +11,20 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Core;
 
 namespace PhoneBookHW
 {
     class Utils
     {
+        public static Bitmap GetImageFromUrlTask(string url) {
+            ThreadPool.QueueUserWorkItem(o => GetImageBitmapFromUrl(url));
+        }
         public static Bitmap GetImageBitmapFromUrl(string url)
         {
             Bitmap imageBitmap = null;
 
-            using (var webClient = new WebClient())
+            using (var webClient = ServiceManager.Resolve<WebClient>())
             {
                 var imageBytes = webClient.DownloadData(url);
                 if (imageBytes != null && imageBytes.Length > 0)
@@ -33,5 +37,5 @@ namespace PhoneBookHW
         }
     }
 
-
+    
 }

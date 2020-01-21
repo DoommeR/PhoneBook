@@ -22,7 +22,8 @@ namespace PhoneBookHW
             SetContentView(Resource.Layout.activity_zoomImage);
 
             var url = JsonConvert.DeserializeObject<string>(Intent.GetStringExtra("url"));
-            FindViewById<ImageView>(Resource.Id.zoom_img).SetImageBitmap(Utils.GetImageBitmapFromUrl(url));
+
+            ImageDownloaderFromUri.SetImageFromUrlTask(url, FindViewById<ImageView>(Resource.Id.zoom_img));
             
         }
     }

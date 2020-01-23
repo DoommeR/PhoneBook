@@ -23,8 +23,10 @@ namespace PhoneBookHW
 
             var url = JsonConvert.DeserializeObject<string>(Intent.GetStringExtra("url"));
 
-            ImageDownloaderFromUri.SetImageFromUrlTask(url, FindViewById<ImageView>(Resource.Id.zoom_img));
-            
+            //ImageDownloaderFromUri.SetImageFromUrlTask(url, FindViewById<ImageView>(Resource.Id.zoom_img));
+            var dw = new ImageDownloaderFromUri(url, FindViewById<ImageView>(Resource.Id.zoom_img));
+            dw.SetImageFromUrlTask();
+
         }
     }
 }

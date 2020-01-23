@@ -26,7 +26,9 @@ namespace PhoneBookHW
             contact = JsonConvert.DeserializeObject<Contact>(Intent.GetStringExtra("Contact"));
 
             var img = FindViewById<ImageView>(Resource.Id.detail_icon);
-            ImageDownloaderFromUri.SetImageFromUrlTask(contact.picture.medium, img);
+
+            var dw = new ImageDownloaderFromUri(contact.picture.medium, img);
+            dw.SetImageFromUrlTask();
             img.Click += Img_Click;
 
             FindViewById<TextView>(Resource.Id.detail_firstname).Text= contact.name.First;

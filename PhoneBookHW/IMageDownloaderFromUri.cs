@@ -17,38 +17,49 @@ namespace PhoneBookHW
 {
     class ImageDownloaderFromUri
     {
-        public string Uri { get; set}
-        public Bitmap imageBitmap { get; private set; }
+        public Uri Uri { get; set; }
+        public static ImageView ImageView { get; set; }
+        
+        public ImageDownloaderFromUri(string uri,ImageView imageView) {
+            Uri = new Uri(uri);
+            ImageView = imageView;
+        }
 
         public void SetImageFromUrlTask() {
-            ThreadPool.QueueUserWorkItem(o => SetImageBitmapFromUrl(Uri, ImageView));
+            //ThreadPool.QueueUserWorkItem(o => SetImageBitmapFromUrl());
+            SetImageFromUrlTask();
         }
-        private void SetImageBitmapFromUrl(string url,ImageView view)
+        private void SetImageBitmapFromUrl()
         {
-            imageBitmap = null;
+            //ServiceManager.Resolve<WebClient>()
+            //using (var webClient = ServiceManager.Resolve<WebClient>())
+            //{
 
-            using (var webClient = ServiceManager.Resolve<WebClient>())
+
+            //    webClient.DownloadDataCompleted += WebClient_DownloadDataCompleted;
+            //    webClient.DownloadDataAsync(Uri);
+            //    //while (webClient.IsBusy) { Thread.Sleep(100); };
+            //}
+            AsyncHttpClient client = new AsyncHttpClient();
+            client.get(image_url, null, new AsyncHttpResponseHandler() {
+
+    public void onSuccess(byte[] fileData)
             {
-
-                webClient.DownloadDataAsync(url);
-                webClient.DownloadDataCompleted += WebClient_DownloadDataCompleted;
-                //var imageBytes = webClient.DownloadDataAsync(url);
-                /*if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                    view.SetImageBitmap(imageBitmap);
-                }
-                */
+                Bitmap image = BitmapFactory.decodeByteArray(fileData, 0, fileData.length);
+                //Do whatever you want with the image variable    
             }
+        });
         }
 
         private static void WebClient_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
-            
-        }
-
-        private void DownloadCompleted() { 
-        
+            byte[] raw = e.Result;
+            Bitmap image = null;
+            if (raw != null && raw.Length > 0)
+            {
+                image = BitmapFactory.DecodeByteArray(raw, 0, raw.Length);
+                ImageView.SetImageBitmap(image);
+            }
         }
     }
 

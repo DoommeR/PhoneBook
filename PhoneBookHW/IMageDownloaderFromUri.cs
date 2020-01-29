@@ -1,6 +1,6 @@
 ﻿using Android.Widget;
 using FFImageLoading;
-
+using FFImageLoading.Transformations;
 namespace PhoneBookHW
 {
     class ImageDownloaderFromUri
@@ -19,7 +19,7 @@ namespace PhoneBookHW
 
         private void SetImageBitmapFromUrl()
         {
-            ImageService.Instance.LoadUrl(Uri).LoadingPlaceholder(null).Into(ImageView);
+            ImageService.Instance.LoadUrl(Uri).Transform(new CircleTransformation()).LoadingPlaceholder(null).Into(ImageView);
         }
 
     }

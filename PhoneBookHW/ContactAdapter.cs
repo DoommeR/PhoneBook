@@ -33,10 +33,10 @@ namespace PhoneBookHW
         {
 
             var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.contact_row, parent, false);
-
-            //ImageDownloaderFromUri.SetImageFromUrlTask(this[position].picture.thumbnail,view.FindViewById<ImageView>(Resource.Id.contact_row__icon));
             var dw = new ImageDownloaderFromUri(this[position].picture.thumbnail, view.FindViewById<ImageView>(Resource.Id.contact_row__icon));
+
             dw.SetImageFromUrlTask();
+            
             view.FindViewById<TextView> (Resource.Id.contact_row_phone).Text =this[position].Phone;
             view.FindViewById<TextView>(Resource.Id.contact_row_name).Text = this[position].name.First;
 
